@@ -1,93 +1,83 @@
 # Jak używać tego template ponownie
 
-## Status template
+## Cel template
 
-To jest lokalny reusable template sklepu internetowego oparty o:
+Ten projekt jest reusable template sklepu internetowego opartego o Medusa Backend/Admin, Next.js Storefront oraz PostgreSQL w Dockerze.
 
-- Medusa Backend/Admin
-- Next.js Storefront
-- PostgreSQL w Dockerze
-- Polski storefront
-- Koszyk, checkout, konto klienta, adresy i zamówienia
-- Testowy system płatności Medusa
-- Skrypty backupu i restore
+Nie jest to jednorazowy sklep. To baza, którą można kopiować i dostosowywać pod kolejnych klientów.
 
-Ten template jest punktem startowym pod kolejne sklepy, a nie jednorazową stroną.
+## Co jest częścią template
 
-## Co trafia na GitHub
+W repozytorium znajduje się:
 
-Na GitHub trafia kod aplikacji, dokumentacja i przykładowe pliki konfiguracyjne:
+- kod backendu Medusa,
+- kod storefrontu Next.js,
+- dokumentacja,
+- skrypty backupu i restore,
+- przykładowe pliki środowiskowe,
+- konfiguracja projektu,
+- polski checkout, konto klienta, adresy i zamówienia.
 
-- README.md
-- docs/
-- apps/backend/
-- apps/storefront/
-- scripts/
-- .env.example
-- apps/backend/.env.template
-- apps/storefront/.env.example
+## Co nie jest częścią repozytorium
 
-Nie trafiają tam prywatne pliki środowiskowe ani dane produkcyjne.
+Do GitHub nie trafiają:
 
-## Co nie trafia na GitHub
-
-Do repozytorium nie wolno wrzucać:
-
-- .env
-- .env.local
-- haseł
-- tokenów
-- realnych sekretów
-- backupów bazy z danymi klientów
-- node_modules
-- .next
-- .turbo
-- .medusa
-- plików *.bak
-- plików *.tsbuildinfo
+- baza danych PostgreSQL,
+- dane klientów,
+- zamówienia,
+- pliki .env,
+- pliki .env.local,
+- hasła,
+- tokeny,
+- Docker volume,
+- node_modules,
+- .next,
+- .turbo,
+- .medusa,
+- backupy .sql.
 
 ## Jak działa baza danych
 
-Baza danych PostgreSQL działa lokalnie w Dockerze.
+Baza PostgreSQL działa lokalnie w Dockerze.
 
-Kod template jest w GitHubie, ale sama baza nie jest częścią repozytorium.
+Kod aplikacji jest wysyłany na GitHub, ale baza danych nie jest wysyłana razem z kodem.
 
-Dla każdego nowego sklepu należy używać osobnej bazy danych, np.:
+Dla każdego nowego sklepu należy utworzyć osobną bazę danych, np.:
 
-- medusa-client-a
-- medusa-client-b
-- medusa-shop-demo
+- medusa-client-one
+- medusa-client-two
+- medusa-demo-shop
 
-Nie należy mieszać danych różnych klientów w jednej bazie.
+Nie należy używać jednej wspólnej bazy dla wielu klientów.
 
-## Ponowne użycie template dla nowego sklepu
+## Jak używać template przy kolejnym sklepie
 
 Typowy proces:
 
 1. Sklonować repozytorium do nowego folderu.
 2. Skopiować pliki env z przykładów.
-3. Ustawić nowe wartości środowiskowe.
+3. Ustawić nowe zmienne środowiskowe.
 4. Utworzyć nową bazę PostgreSQL w Dockerze.
 5. Uruchomić backend Medusa.
-6. Uruchomić migracje/seed.
-7. Ustawić region, walutę, dostawy i płatności w Medusa Admin.
+6. Uruchomić migracje i seed.
+7. Skonfigurować region, walutę, dostawy i płatności w Medusa Admin.
 8. Uruchomić storefront Next.js.
 9. Zmienić nazwę sklepu, teksty, logo, produkty i styl.
-10. Przetestować ścieżkę klienta: produkt, koszyk, checkout, konto, zamówienia.
+10. Przetestować pełną ścieżkę klienta.
 
-## Ważna zasada
+## Najważniejsza zasada
 
 Template to kod i struktura aplikacji.
 
 Baza danych to dane konkretnego sklepu.
 
-Kod można kopiować i rozwijać dla kolejnych klientów, ale baza powinna być osobna dla każdego wdrożenia.
+Kod można używać ponownie, ale baza powinna być osobna dla każdego klienta lub projektu.
 
-## Lokalny baseline
+## Aktualny baseline
 
-Aktualny punkt bazowy:
+Lokalny punkt bazowy:
 
 - commit: v1 local reusable Medusa Next template baseline
 - tag: v1-template-local-qa-pass
 
-To jest lokalny punkt powrotu po przejściu manualnego QA.
+Ten punkt przeszedł manualne QA lokalnie.

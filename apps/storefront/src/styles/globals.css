@@ -1,0 +1,610 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label {
+    @apply -translate-y-2 text-xsmall-regular;
+  }
+
+  input:focus ~ label {
+    @apply left-0;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid #212121;
+    -webkit-text-fill-color: #212121;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  .content-container {
+    @apply max-w-[1440px] w-full mx-auto px-6;
+  }
+
+  .contrast-btn {
+    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+  }
+
+  .text-xsmall-regular {
+    @apply text-[10px] leading-4 font-normal;
+  }
+
+  .text-small-regular {
+    @apply text-xs leading-5 font-normal;
+  }
+
+  .text-small-semi {
+    @apply text-xs leading-5 font-semibold;
+  }
+
+  .text-base-regular {
+    @apply text-sm leading-6 font-normal;
+  }
+
+  .text-base-semi {
+    @apply text-sm leading-6 font-semibold;
+  }
+
+  .text-large-regular {
+    @apply text-base leading-6 font-normal;
+  }
+
+  .text-large-semi {
+    @apply text-base leading-6 font-semibold;
+  }
+
+  .text-xl-regular {
+    @apply text-2xl leading-[36px] font-normal;
+  }
+
+  .text-xl-semi {
+    @apply text-2xl leading-[36px] font-semibold;
+  }
+
+  .text-2xl-regular {
+    @apply text-[30px] leading-[48px] font-normal;
+  }
+
+  .text-2xl-semi {
+    @apply text-[30px] leading-[48px] font-semibold;
+  }
+
+  .text-3xl-regular {
+    @apply text-[32px] leading-[44px] font-normal;
+  }
+
+  .text-3xl-semi {
+    @apply text-[32px] leading-[44px] font-semibold;
+  }
+}
+
+/* =========================================================
+   Template Theme: Modern Minimalism
+   Mint + White + Graphite
+   This layer changes visible styling only.
+   It does not modify app logic, components, routes or data.
+   ========================================================= */
+
+:root {
+  --template-bg: #ffffff;
+  --template-bg-soft: #f6fffc;
+  --template-surface: #ffffff;
+  --template-mint: #14b8a6;
+  --template-mint-dark: #0f766e;
+  --template-mint-soft: #ccfbf1;
+  --template-graphite: #1f2937;
+  --template-graphite-strong: #111827;
+  --template-muted: #64748b;
+  --template-border: #ddebe8;
+}
+
+/* Base */
+html,
+body {
+  background: var(--template-bg);
+  color: var(--template-graphite);
+}
+
+/* Main soft backgrounds used by storefront */
+.bg-ui-bg-subtle,
+.bg-ui-bg-base {
+  background-color: var(--template-bg-soft) !important;
+}
+
+.bg-ui-bg-field,
+.bg-ui-bg-field-hover,
+.bg-ui-bg-component,
+.bg-ui-bg-component-hover {
+  background-color: var(--template-surface) !important;
+}
+
+/* Text */
+.text-ui-fg-base,
+.text-ui-fg-interactive {
+  color: var(--template-graphite-strong) !important;
+}
+
+.text-ui-fg-subtle,
+.text-ui-fg-muted {
+  color: var(--template-muted) !important;
+}
+
+/* Borders */
+.border-ui-border-base,
+.border-ui-border-strong {
+  border-color: var(--template-border) !important;
+}
+
+/* Links */
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--template-mint-dark);
+}
+
+/* Buttons - primary dark buttons become mint */
+.bg-ui-button-inverted,
+button.bg-ui-button-inverted,
+[data-testid="add-product-button"],
+[data-testid="checkout-button"],
+[data-testid="submit-order-button"],
+[data-testid="submit-address-button"],
+[data-testid="submit-delivery-option-button"],
+[data-testid="submit-payment-button"] {
+  background-color: var(--template-mint-dark) !important;
+  color: #ffffff !important;
+  border-color: var(--template-mint-dark) !important;
+}
+
+.bg-ui-button-inverted:hover,
+button.bg-ui-button-inverted:hover,
+[data-testid="add-product-button"]:hover,
+[data-testid="checkout-button"]:hover,
+[data-testid="submit-order-button"]:hover,
+[data-testid="submit-address-button"]:hover,
+[data-testid="submit-delivery-option-button"]:hover,
+[data-testid="submit-payment-button"]:hover {
+  background-color: var(--template-mint) !important;
+  border-color: var(--template-mint) !important;
+}
+
+/* Secondary buttons */
+.bg-ui-button-neutral,
+button.bg-ui-button-neutral {
+  background-color: #ffffff !important;
+  color: var(--template-graphite-strong) !important;
+  border: 1px solid var(--template-border) !important;
+}
+
+.bg-ui-button-neutral:hover,
+button.bg-ui-button-neutral:hover {
+  background-color: var(--template-mint-soft) !important;
+  color: var(--template-mint-dark) !important;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  border-color: var(--template-border) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--template-mint) !important;
+  box-shadow: 0 0 0 1px var(--template-mint) !important;
+}
+
+/* Product cards / image boxes */
+[data-testid="product-wrapper"] img,
+[data-testid="product-preview"] img {
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+[data-testid="product-wrapper"]:hover img,
+[data-testid="product-preview"]:hover img {
+  transform: scale(1.015);
+}
+
+/* Selection / active accents */
+[data-state="checked"],
+[data-state="open"] {
+  border-color: var(--template-mint) !important;
+}
+
+/* Small visual polish */
+.shadow-borders-base,
+.shadow-borders-interactive {
+  box-shadow: 0 0 0 1px var(--template-border) !important;
+}
+
+
+/* =========================================================
+   Template Theme v2: Stronger Mint Minimalism
+   Stronger visible effect for presentation
+   ========================================================= */
+
+:root {
+  --template-page-bg: #eefcf8;
+  --template-page-bg-2: #f7fffd;
+  --template-card-bg: #ffffff;
+  --template-mint: #14b8a6;
+  --template-mint-dark: #0f766e;
+  --template-mint-deep: #115e59;
+  --template-mint-soft: #ccfbf1;
+  --template-graphite: #1f2937;
+  --template-muted: #64748b;
+  --template-border: #bfe9e2;
+}
+
+/* Strong page background */
+html,
+body {
+  background:
+    radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 32rem),
+    linear-gradient(180deg, var(--template-page-bg), var(--template-page-bg-2)) !important;
+  color: var(--template-graphite) !important;
+}
+
+/* Main page area */
+main,
+.min-h-screen,
+.content-container {
+  background: transparent !important;
+}
+
+/* Header / nav */
+header,
+nav,
+[data-testid="nav"] {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-bottom: 1px solid var(--template-border) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Footer */
+footer {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-top: 1px solid var(--template-border) !important;
+}
+
+/* Hero section */
+.h-\[75vh\] {
+  background:
+    radial-gradient(circle at center, rgba(20, 184, 166, 0.16), transparent 28rem),
+    linear-gradient(135deg, #f0fdfa, #ffffff) !important;
+}
+
+/* Product / checkout / account surfaces */
+.bg-ui-bg-subtle,
+.bg-ui-bg-base,
+.bg-ui-bg-field,
+.bg-ui-bg-component,
+.bg-ui-bg-component-hover {
+  background-color: transparent !important;
+}
+
+/* White cards and image boxes */
+[data-testid="product-wrapper"] > a > div,
+[data-testid="product-preview"],
+[data-testid="product-image"],
+[data-testid="product-info"],
+[data-testid="cart-container"],
+[data-testid="checkout-container"],
+[data-testid="order-complete-container"],
+[data-testid="account-page-wrapper"],
+[data-testid="overview-page-wrapper"],
+[data-testid="addresses-page-wrapper"],
+[data-testid="orders-page-wrapper"] {
+  background-color: var(--template-card-bg) !important;
+  border-color: var(--template-border) !important;
+}
+
+/* Product image boxes by common Medusa classes */
+.group .bg-ui-bg-subtle,
+.group .bg-ui-bg-base {
+  background: linear-gradient(180deg, #ffffff, #f0fdfa) !important;
+  border: 1px solid var(--template-border) !important;
+}
+
+/* Text */
+.text-ui-fg-base,
+.text-ui-fg-interactive,
+h1,
+h2,
+h3 {
+  color: var(--template-graphite) !important;
+}
+
+.text-ui-fg-subtle,
+.text-ui-fg-muted,
+p {
+  color: var(--template-muted) !important;
+}
+
+/* Links */
+a:hover {
+  color: var(--template-mint-dark) !important;
+}
+
+/* Primary buttons */
+button,
+.bg-ui-button-inverted,
+[data-testid="add-product-button"],
+[data-testid="checkout-button"],
+[data-testid="submit-order-button"],
+[data-testid="submit-address-button"],
+[data-testid="submit-delivery-option-button"],
+[data-testid="submit-payment-button"] {
+  border-radius: 10px !important;
+}
+
+.bg-ui-button-inverted,
+button.bg-ui-button-inverted,
+[data-testid="add-product-button"],
+[data-testid="checkout-button"],
+[data-testid="submit-order-button"],
+[data-testid="submit-address-button"],
+[data-testid="submit-delivery-option-button"],
+[data-testid="submit-payment-button"] {
+  background: linear-gradient(135deg, var(--template-mint-dark), var(--template-mint)) !important;
+  color: #ffffff !important;
+  border-color: var(--template-mint-dark) !important;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.18) !important;
+}
+
+.bg-ui-button-inverted:hover,
+button.bg-ui-button-inverted:hover,
+[data-testid="add-product-button"]:hover,
+[data-testid="checkout-button"]:hover,
+[data-testid="submit-order-button"]:hover,
+[data-testid="submit-address-button"]:hover,
+[data-testid="submit-delivery-option-button"]:hover,
+[data-testid="submit-payment-button"]:hover {
+  background: linear-gradient(135deg, var(--template-mint-deep), var(--template-mint-dark)) !important;
+}
+
+/* Secondary buttons */
+.bg-ui-button-neutral,
+button.bg-ui-button-neutral,
+button[data-variant="secondary"] {
+  background-color: #ffffff !important;
+  color: var(--template-mint-dark) !important;
+  border: 1px solid var(--template-border) !important;
+}
+
+.bg-ui-button-neutral:hover,
+button.bg-ui-button-neutral:hover,
+button[data-variant="secondary"]:hover {
+  background-color: var(--template-mint-soft) !important;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  background-color: #ffffff !important;
+  border-color: var(--template-border) !important;
+  border-radius: 10px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--template-mint) !important;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.18) !important;
+}
+
+/* Borders globally softer */
+.border-ui-border-base,
+.border-ui-border-strong {
+  border-color: var(--template-border) !important;
+}
+
+/* Active radio / selected variant */
+[data-state="checked"],
+[aria-checked="true"],
+button[aria-pressed="true"] {
+  border-color: var(--template-mint) !important;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.18) !important;
+}
+
+/* Selection color */
+::selection {
+  background: var(--template-mint-soft);
+  color: var(--template-mint-deep);
+}
+
+
+/* =========================================================
+   UX fix: selected product options
+   Makes selected size/color clearly visible
+   ========================================================= */
+
+button.border-ui-border-interactive,
+.border-ui-border-interactive,
+button[aria-pressed="true"],
+button[aria-selected="true"],
+button[data-state="checked"],
+[data-testid="option-button"].border-ui-border-interactive {
+  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  color: #ffffff !important;
+  border-color: #0f766e !important;
+  box-shadow: 0 8px 18px rgba(15, 118, 110, 0.22) !important;
+  font-weight: 600 !important;
+}
+
+button.border-ui-border-interactive:hover,
+[data-testid="option-button"].border-ui-border-interactive:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  color: #ffffff !important;
+}
+
+/* Better hover for not-selected options */
+[data-testid="option-button"]:hover {
+  border-color: #14b8a6 !important;
+  background-color: #ccfbf1 !important;
+  color: #0f766e !important;
+}
+
+
+/* =========================================================
+   UX fix: account/register primary buttons
+   ========================================================= */
+
+button[type="submit"],
+button[data-testid="register-button"],
+button[data-testid="login-button"] {
+  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  color: #ffffff !important;
+  border-color: #0f766e !important;
+  border-radius: 10px !important;
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.2) !important;
+}
+
+button[type="submit"]:hover,
+button[data-testid="register-button"]:hover,
+button[data-testid="login-button"]:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+}
+
+
+/* =========================================================
+   UX fix: account login/register helper links
+   ========================================================= */
+
+form + span a,
+form + div a,
+[data-testid="login-page"] a,
+[data-testid="register-page"] a {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0f766e !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+form + span a:hover,
+form + div a:hover,
+[data-testid="login-page"] a:hover,
+[data-testid="register-page"] a:hover {
+  color: #115e59 !important;
+  background: transparent !important;
+}
+
+
+/* =========================================================
+   UX fix: login button stronger than register link
+   ========================================================= */
+
+/* Main login/register submit button */
+form button[type="submit"],
+button[data-testid="login-button"],
+button[data-testid="register-button"] {
+  min-height: 52px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22) !important;
+}
+
+/* Small register/login helper links */
+a[href*="/account/register"],
+a[href*="/account/login"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #0f766e !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+a[href*="/account/register"]:hover,
+a[href*="/account/login"]:hover {
+  color: #115e59 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================================
+   UX fix: wider account register/login helper button
+   ========================================================= */
+
+a[href*="/account/register"],
+a[href*="/account/login"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-width: 140px !important;
+  min-height: 42px !important;
+  padding: 0 22px !important;
+  margin-left: 8px !important;
+
+  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  color: #ffffff !important;
+
+  border-radius: 12px !important;
+  border: 1px solid #0f766e !important;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.18) !important;
+
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+a[href*="/account/register"]:hover,
+a[href*="/account/login"]:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  box-shadow: 0 12px 26px rgba(15, 118, 110, 0.24) !important;
+}
+

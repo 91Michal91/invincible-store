@@ -31,7 +31,7 @@ export default function CustomerServicePage() {
         <div>
           <h2 className="text-xl-semi text-ui-fg-base mb-2">Zwroty i wymiany</h2>
           <p>
-            Tutaj można opisać zasady zwrotów, wymiany produktów oraz reklamacji.
+            Zwroty, wymiany i reklamacje obsługujemy mailowo. Klient sklepu internetowego może co do zasady odstąpić od umowy w terminie 14 dni od otrzymania produktu. Reklamacje dotyczące niezgodności produktu z umową rozpatrujemy zgodnie z obowiązującymi przepisami.
           </p>
         </div>
       </div>

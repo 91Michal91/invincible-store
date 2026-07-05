@@ -22,14 +22,14 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-xl-semi text-ui-fg-base mb-2">Zakres danych</h2>
             <p>
-              Sklep może przetwarzać dane potrzebne do obsługi zamówień, takie jak imię i nazwisko, adres dostawy, adres e-mail, numer telefonu, dane płatności oraz historia zamówień.
+              Sklep może przetwarzać dane potrzebne do obsługi zamówień, takie jak imię i nazwisko, adres dostawy, adres e-mail, dane kontaktowe, dane płatności oraz historia zamówień.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl-semi text-ui-fg-base mb-2">Cel przetwarzania</h2>
             <p>
-              Dane są przetwarzane w celu realizacji zamówień, obsługi płatności, dostawy produktów, kontaktu z klientem, obsługi zwrotów, reklamacji oraz prowadzenia dokumentacji sprzedaży.
+              Dane są przetwarzane w celu realizacji zamówień, obsługi płatności, dostawy produktów, kontaktu z klientem, obsługi zwrotów, reklamacji oraz prowadzenia dokumentacji związanej ze sprzedażą.
             </p>
           </section>
 

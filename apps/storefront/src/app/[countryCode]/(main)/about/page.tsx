@@ -12,11 +12,11 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Sklep działa w oparciu o Medusa.js, Next.js, PostgreSQL oraz Docker. Dzięki temu może być łatwo rozwijany, wdrażany i dostosowywany do konkretnej marki.
+            Na start skupiamy się na prostym, konkretnym asortymencie: koszulkach i krótkich dropach. Sklep będzie rozwijany etapami razem ze stroną Invincible Polska.
           </p>
 
           <p>
-            Właściciel sklepu może zmienić nazwę, opis, produkty, zdjęcia, dane kontaktowe, regulamin, metody dostawy oraz ustawienia sprzedaży.
+            To mały sklep startowy, dlatego oferta będzie stopniowo rozbudowywana. Najważniejsze są proste zakupy, jasny kontakt i sprawna obsługa zamówień.
           </p>
 
           <div className="border border-ui-border-base rounded-rounded p-4">

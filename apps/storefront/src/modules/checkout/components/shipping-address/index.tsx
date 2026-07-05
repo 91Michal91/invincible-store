@@ -2,6 +2,7 @@ import { HttpTypes } from "@medusajs/types"
 import { Container } from "@modules/common/components/ui"
 import Checkbox from "@modules/common/components/checkbox"
 import Input from "@modules/common/components/input"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { mapKeys } from "lodash"
 import React, { useEffect, useMemo, useState } from "react"
 import AddressSelect from "../address-select"
@@ -110,6 +111,36 @@ const ShippingAddress = ({
             }
             onSelect={setFormAddress}
           />
+        </Container>
+      )}
+
+      {!customer && (
+        <Container className="mb-6 rounded-md border border-ui-border-base bg-ui-bg-subtle p-5">
+          <div className="flex flex-col gap-y-3">
+            <div>
+              <p className="text-base-semi text-ui-fg-base">
+                Masz już konto albo chcesz je założyć?
+              </p>
+              <p className="mt-1 text-small-regular text-ui-fg-subtle">
+                Zaloguj się lub utwórz konto, żeby szybciej składać kolejne zamówienia,
+                zapisać adres i mieć dostęp do historii zakupów.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-2 small:flex-row small:items-center">
+              <LocalizedClientLink
+                href="/account"
+                className="inline-flex min-h-10 items-center justify-center rounded-md bg-ui-fg-base px-4 py-2 text-small-semi text-ui-bg-base transition-colors hover:bg-ui-fg-subtle"
+                data-testid="checkout-login-register-link"
+              >
+                Zaloguj się lub załóż konto
+              </LocalizedClientLink>
+
+              <span className="text-small-regular text-ui-fg-subtle">
+                Możesz też kontynuować zakupy jako gość.
+              </span>
+            </div>
+          </div>
         </Container>
       )}
       <div className="grid grid-cols-2 gap-4">

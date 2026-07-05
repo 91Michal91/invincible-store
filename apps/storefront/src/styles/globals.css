@@ -122,13 +122,13 @@
   --template-bg: #ffffff;
   --template-bg-soft: #f6fffc;
   --template-surface: #ffffff;
-  --template-mint: #14b8a6;
-  --template-mint-dark: #0f766e;
-  --template-mint-soft: #ccfbf1;
+  --template-mint: #facc15;
+  --template-mint-dark: #1d4ed8;
+  --template-mint-soft: #fef08a;
   --template-graphite: #1f2937;
   --template-graphite-strong: #111827;
   --template-muted: #64748b;
-  --template-border: #ddebe8;
+  --template-border: #facc15;
 }
 
 /* Base */
@@ -261,23 +261,23 @@ textarea:focus {
    ========================================================= */
 
 :root {
-  --template-page-bg: #eefcf8;
-  --template-page-bg-2: #f7fffd;
+  --template-page-bg: #fff7d6;
+  --template-page-bg-2: #eff6ff;
   --template-card-bg: #ffffff;
-  --template-mint: #14b8a6;
-  --template-mint-dark: #0f766e;
-  --template-mint-deep: #115e59;
-  --template-mint-soft: #ccfbf1;
+  --template-mint: #facc15;
+  --template-mint-dark: #1d4ed8;
+  --template-mint-deep: #0f172a;
+  --template-mint-soft: #fef08a;
   --template-graphite: #1f2937;
   --template-muted: #64748b;
-  --template-border: #bfe9e2;
+  --template-border: #facc15;
 }
 
 /* Strong page background */
 html,
 body {
   background:
-    radial-gradient(circle at top left, rgba(20, 184, 166, 0.18), transparent 32rem),
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.22), transparent 32rem),
     linear-gradient(180deg, var(--template-page-bg), var(--template-page-bg-2)) !important;
   color: var(--template-graphite) !important;
 }
@@ -307,8 +307,8 @@ footer {
 /* Hero section */
 .h-\[75vh\] {
   background:
-    radial-gradient(circle at center, rgba(20, 184, 166, 0.16), transparent 28rem),
-    linear-gradient(135deg, #f0fdfa, #ffffff) !important;
+    radial-gradient(circle at center, rgba(37, 99, 235, 0.16), transparent 28rem),
+    linear-gradient(135deg, #eff6ff, #ffffff) !important;
 }
 
 /* Product / checkout / account surfaces */
@@ -339,7 +339,7 @@ footer {
 /* Product image boxes by common Medusa classes */
 .group .bg-ui-bg-subtle,
 .group .bg-ui-bg-base {
-  background: linear-gradient(180deg, #ffffff, #f0fdfa) !important;
+  background: linear-gradient(180deg, #ffffff, #eff6ff) !important;
   border: 1px solid var(--template-border) !important;
 }
 
@@ -428,7 +428,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--template-mint) !important;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.18) !important;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.22) !important;
 }
 
 /* Borders globally softer */
@@ -442,7 +442,7 @@ textarea:focus {
 [aria-checked="true"],
 button[aria-pressed="true"] {
   border-color: var(--template-mint) !important;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.18) !important;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.22) !important;
 }
 
 /* Selection color */
@@ -463,24 +463,24 @@ button[aria-pressed="true"],
 button[aria-selected="true"],
 button[data-state="checked"],
 [data-testid="option-button"].border-ui-border-interactive {
-  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  background: linear-gradient(135deg, #1d4ed8, #facc15) !important;
   color: #ffffff !important;
-  border-color: #0f766e !important;
+  border-color: #1d4ed8 !important;
   box-shadow: 0 8px 18px rgba(15, 118, 110, 0.22) !important;
   font-weight: 600 !important;
 }
 
 button.border-ui-border-interactive:hover,
 [data-testid="option-button"].border-ui-border-interactive:hover {
-  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8) !important;
   color: #ffffff !important;
 }
 
 /* Better hover for not-selected options */
 [data-testid="option-button"]:hover {
-  border-color: #14b8a6 !important;
-  background-color: #ccfbf1 !important;
-  color: #0f766e !important;
+  border-color: #facc15 !important;
+  background-color: #fef08a !important;
+  color: #1d4ed8 !important;
 }
 
 
@@ -491,9 +491,9 @@ button.border-ui-border-interactive:hover,
 button[type="submit"],
 button[data-testid="register-button"],
 button[data-testid="login-button"] {
-  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  background: linear-gradient(135deg, #1d4ed8, #facc15) !important;
   color: #ffffff !important;
-  border-color: #0f766e !important;
+  border-color: #1d4ed8 !important;
   border-radius: 10px !important;
   box-shadow: 0 8px 20px rgba(15, 118, 110, 0.2) !important;
 }
@@ -501,7 +501,7 @@ button[data-testid="login-button"] {
 button[type="submit"]:hover,
 button[data-testid="register-button"]:hover,
 button[data-testid="login-button"]:hover {
-  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8) !important;
 }
 
 
@@ -515,7 +515,7 @@ form + div a,
 [data-testid="register-page"] a {
   background: transparent !important;
   box-shadow: none !important;
-  color: #0f766e !important;
+  color: #1d4ed8 !important;
   text-decoration: underline !important;
   text-underline-offset: 3px !important;
   border-radius: 0 !important;
@@ -526,7 +526,7 @@ form + span a:hover,
 form + div a:hover,
 [data-testid="login-page"] a:hover,
 [data-testid="register-page"] a:hover {
-  color: #115e59 !important;
+  color: #0f172a !important;
   background: transparent !important;
 }
 
@@ -544,7 +544,7 @@ button[data-testid="register-button"] {
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
   border-radius: 12px !important;
-  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  background: linear-gradient(135deg, #1d4ed8, #facc15) !important;
   color: #ffffff !important;
   box-shadow: 0 12px 26px rgba(15, 118, 110, 0.22) !important;
 }
@@ -554,7 +554,7 @@ a[href*="/account/register"],
 a[href*="/account/login"] {
   background: transparent !important;
   box-shadow: none !important;
-  color: #0f766e !important;
+  color: #1d4ed8 !important;
   padding: 0 !important;
   border-radius: 0 !important;
   font-size: 14px !important;
@@ -565,7 +565,7 @@ a[href*="/account/login"] {
 
 a[href*="/account/register"]:hover,
 a[href*="/account/login"]:hover {
-  color: #115e59 !important;
+  color: #0f172a !important;
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -586,11 +586,11 @@ a[href*="/account/login"] {
   padding: 0 22px !important;
   margin-left: 8px !important;
 
-  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+  background: linear-gradient(135deg, #1d4ed8, #facc15) !important;
   color: #ffffff !important;
 
   border-radius: 12px !important;
-  border: 1px solid #0f766e !important;
+  border: 1px solid #1d4ed8 !important;
   box-shadow: 0 10px 22px rgba(15, 118, 110, 0.18) !important;
 
   font-size: 14px !important;
@@ -602,7 +602,7 @@ a[href*="/account/login"] {
 
 a[href*="/account/register"]:hover,
 a[href*="/account/login"]:hover {
-  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8) !important;
   color: #ffffff !important;
   text-decoration: none !important;
   box-shadow: 0 12px 26px rgba(15, 118, 110, 0.24) !important;
@@ -749,4 +749,24 @@ button.border-ui-border-interactive,
 ::selection {
   background: #facc15 !important;
   color: #020617 !important;
+}
+
+/* INVINCIBLE STORE - auth buttons fix */
+[data-testid="register-view-button"],
+[data-testid="login-button"],
+[data-testid="register-button"] {
+  background: linear-gradient(135deg, #0f172a, #1d4ed8, #facc15) !important;
+  color: #ffffff !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 4px 4px 0 #facc15 !important;
+  border-radius: 10px !important;
+}
+
+[data-testid="register-view-button"]:hover,
+[data-testid="login-button"]:hover,
+[data-testid="register-button"]:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb, #facc15) !important;
+  color: #ffffff !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 #facc15 !important;
 }

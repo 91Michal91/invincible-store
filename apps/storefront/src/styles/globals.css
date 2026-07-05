@@ -608,3 +608,145 @@ a[href*="/account/login"]:hover {
   box-shadow: 0 12px 26px rgba(15, 118, 110, 0.24) !important;
 }
 
+
+/* INVINCIBLE STORE THEME
+   Comic-inspired look: dark navy, yellow energy, strong blue accents.
+   No copyrighted assets are used here.
+*/
+
+:root {
+  --template-bg: #fff7d6;
+  --template-bg-soft: #fff3bf;
+  --template-surface: #ffffff;
+
+  --template-mint: #facc15;
+  --template-mint-dark: #1d4ed8;
+  --template-mint-deep: #0f172a;
+  --template-mint-soft: #fef08a;
+
+  --template-graphite: #0f172a;
+  --template-graphite-strong: #020617;
+  --template-muted: #475569;
+  --template-border: #facc15;
+
+  --template-page-bg: #fff7d6;
+  --template-page-bg-2: #eff6ff;
+  --template-card-bg: #ffffff;
+}
+
+/* Stronger comic-style page background */
+body {
+  background:
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.32), transparent 28rem),
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.18), transparent 30rem),
+    linear-gradient(180deg, #fff7d6 0%, #eff6ff 60%, #ffffff 100%) !important;
+  color: var(--template-graphite) !important;
+}
+
+/* Header / navigation */
+header,
+nav {
+  background: rgba(2, 6, 23, 0.94) !important;
+  border-bottom: 3px solid #facc15 !important;
+  color: #ffffff !important;
+}
+
+header a,
+nav a,
+header button,
+nav button {
+  color: #ffffff !important;
+}
+
+header a:hover,
+nav a:hover,
+header button:hover,
+nav button:hover {
+  color: #facc15 !important;
+}
+
+/* Footer */
+footer {
+  background:
+    radial-gradient(circle at top left, rgba(250, 204, 21, 0.18), transparent 24rem),
+    linear-gradient(135deg, #020617, #0f172a) !important;
+  border-top: 3px solid #facc15 !important;
+  color: #e5e7eb !important;
+}
+
+footer a {
+  color: #fef08a !important;
+}
+
+footer a:hover {
+  color: #ffffff !important;
+}
+
+/* Cards and surfaces */
+.bg-white,
+.bg-ui-bg-base,
+.bg-ui-bg-subtle,
+.bg-ui-bg-component,
+.bg-ui-bg-field {
+  border-color: rgba(250, 204, 21, 0.45) !important;
+}
+
+/* Main buttons */
+.bg-ui-button-inverted,
+button.bg-ui-button-inverted,
+[data-testid="add-product-button"],
+[data-testid="checkout-button"],
+[data-testid="submit-address-button"],
+[data-testid="submit-delivery-option-button"],
+[data-testid="submit-payment-button"],
+[data-testid="submit-order-button"] {
+  background: linear-gradient(135deg, #0f172a, #1d4ed8) !important;
+  color: #ffffff !important;
+  border: 2px solid #facc15 !important;
+  box-shadow: 4px 4px 0 #facc15 !important;
+  border-radius: 10px !important;
+}
+
+.bg-ui-button-inverted:hover,
+button.bg-ui-button-inverted:hover,
+[data-testid="add-product-button"]:hover,
+[data-testid="checkout-button"]:hover,
+[data-testid="submit-address-button"]:hover,
+[data-testid="submit-delivery-option-button"]:hover,
+[data-testid="submit-payment-button"]:hover,
+[data-testid="submit-order-button"]:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 #facc15 !important;
+}
+
+/* Secondary buttons / neutral actions */
+.bg-ui-button-neutral,
+button.bg-ui-button-neutral {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 2px solid #1d4ed8 !important;
+  box-shadow: 3px 3px 0 #bfdbfe !important;
+}
+
+.bg-ui-button-neutral:hover,
+button.bg-ui-button-neutral:hover {
+  background: #fef08a !important;
+  color: #020617 !important;
+}
+
+/* Selected options, e.g. size/color */
+button.border-ui-border-interactive,
+.border-ui-border-interactive,
+[data-testid="option-button"].border-ui-border-interactive {
+  background: linear-gradient(135deg, #facc15, #2563eb) !important;
+  color: #020617 !important;
+  border-color: #020617 !important;
+  box-shadow: 3px 3px 0 #020617 !important;
+}
+
+/* Text selection */
+::selection {
+  background: #facc15 !important;
+  color: #020617 !important;
+}

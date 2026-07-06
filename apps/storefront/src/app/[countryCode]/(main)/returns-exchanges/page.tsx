@@ -1,45 +1,71 @@
 import { shopConfig } from "@lib/config/shop"
 
+export const metadata = {
+  title: "Zwroty i wymiany",
+  description: "Zwroty, wymiany i reklamacje w mini sklepie Invincible Polska.",
+}
+
 export default function ReturnsExchangesPage() {
   return (
-    <div className="content-container py-12">
+    <div className="content-container py-12 small:py-16">
       <div className="max-w-3xl">
-        <h1 className="text-3xl-semi mb-6">Zwroty i wymiany</h1>
+        <h1 className="txt-xlarge-plus mb-6">Zwroty i wymiany</h1>
 
-        <div className="prose prose-sm text-ui-fg-subtle space-y-4">
-          <p>
-            Na tej stronie znajdziesz informacje dotyczące zwrotów, wymiany produktów oraz reklamacji w sklepie {shopConfig.store.name}.
-          </p>
-
+        <div className="grid gap-8 text-ui-fg-subtle">
           <section>
-            <h2 className="text-xl-semi text-ui-fg-base mb-2">Zwrot produktu</h2>
+            <h2 className="txt-large-plus text-ui-fg-base mb-3">
+              Jak zgłosić zwrot lub reklamację?
+            </h2>
             <p>
-              Aby rozpocząć zwrot, skontaktuj się z obsługą sklepu i podaj numer zamówienia oraz dane potrzebne do identyfikacji zakupu.
+              Napisz do nas na adres{" "}
+              <a
+                className="hover:text-ui-fg-base"
+                href={`mailto:${shopConfig.contact.email}`}
+              >
+                {shopConfig.contact.email}
+              </a>
+              . W wiadomości podaj numer zamówienia, adres e-mail użyty przy
+              zakupie oraz krótki opis sprawy.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl-semi text-ui-fg-base mb-2">Wymiana produktu</h2>
+            <h2 className="txt-large-plus text-ui-fg-base mb-3">Zwroty</h2>
             <p>
-              Wymiana produktu jest możliwa zgodnie z dostępnością asortymentu oraz zasadami opisanymi w regulaminie sklepu.
+              Przy standardowych produktach kupionych przez internet konsument
+              może co do zasady odstąpić od umowy w terminie 14 dni od
+              otrzymania produktu. Produkt powinien zostać zwrócony w stanie
+              niepogorszonym ponad to, co było konieczne do sprawdzenia jego
+              charakteru, cech i funkcjonowania.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl-semi text-ui-fg-base mb-2">Kontakt</h2>
-            <p>E-mail: {shopConfig.contact.email}</p>
-            <p>Telefon: {shopConfig.contact.phone}</p>
+            <h2 className="txt-large-plus text-ui-fg-base mb-3">
+              Produkty wykonywane na zamówienie
+            </h2>
+            <p>
+              Jeżeli produkt jest wykonywany według indywidualnej specyfikacji
+              klienta lub jest wyraźnie personalizowany, prawo odstąpienia od
+              umowy może nie przysługiwać. Informacja o takim ograniczeniu
+              będzie podana przy konkretnym produkcie lub w procesie zamówienia.
+            </p>
           </section>
 
-          {shopConfig.demo.enabled && (
-            <section className="border border-ui-border-base rounded-rounded p-4 bg-ui-bg-subtle">
-              <h2 className="text-xl-semi text-ui-fg-base mb-2">{shopConfig.demo.label}</h2>
-              <p>{shopConfig.demo.notice}</p>
-              <p>
-                W produkcyjnej wersji sklepu zasady zwrotów i wymian należy dopasować do regulaminu sprzedaży oraz faktycznego procesu obsługi klienta.
-              </p>
-            </section>
-          )}
+          <section>
+            <h2 className="txt-large-plus text-ui-fg-base mb-3">
+              Adres do zwrotów
+            </h2>
+            <p>
+              {shopConfig.company.name}
+              <br />
+              {shopConfig.company.street}
+              <br />
+              {shopConfig.company.postalCode} {shopConfig.company.city}
+              <br />
+              {shopConfig.company.country}
+            </p>
+          </section>
         </div>
       </div>
     </div>

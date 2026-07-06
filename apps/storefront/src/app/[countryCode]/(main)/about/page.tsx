@@ -1,39 +1,34 @@
 import { shopConfig } from "@lib/config/shop"
 
+export const metadata = {
+  title: "O sklepie",
+  description: "O mini sklepie Invincible Polska.",
+}
+
 export default function AboutPage() {
   return (
-    <div className="content-container py-12">
+    <div className="content-container py-12 small:py-16">
       <div className="max-w-3xl">
-        <h1 className="text-3xl-semi mb-6">O sklepie</h1>
+        <h1 className="txt-xlarge-plus mb-6">O sklepie</h1>
 
-        <div className="prose prose-sm text-ui-fg-subtle space-y-4">
+        <div className="grid gap-6 text-ui-fg-subtle">
           <p>
-            {shopConfig.store.name} to nowoczesny sklep internetowy przygotowany z myślą o wygodnych zakupach, przejrzystej prezentacji produktów i sprawnej obsłudze zamówień.
+            {shopConfig.store.name} to mini sklep tworzony przy projekcie
+            Invincible Polska. Na start skupiamy się na koszulkach, nadrukach
+            i krótkich limitowanych dropach.
           </p>
 
           <p>
-            Na start skupiamy się na prostym, konkretnym asortymencie: koszulkach i krótkich dropach. Sklep będzie rozwijany etapami razem ze stroną Invincible Polska.
+            Sklep powstaje z myślą o społeczności fanów. Oferta będzie
+            rozwijana etapami, a najważniejsze na starcie są proste zakupy,
+            jasny kontakt i sprawna obsługa zamówień.
           </p>
 
           <p>
-            To mały sklep startowy, dlatego oferta będzie stopniowo rozbudowywana. Najważniejsze są proste zakupy, jasny kontakt i sprawna obsługa zamówień.
+            Produkty widoczne w sklepie nie są oficjalnym merchandise’em marki
+            Invincible, chyba że opis konkretnego produktu wyraźnie stanowi
+            inaczej. Sklep działa jako niezależny mini sklep społecznościowy.
           </p>
-
-          <div className="border border-ui-border-base rounded-rounded p-4">
-            <h2 className="text-xl-semi mb-3">Dane firmy</h2>
-            <p>Właściciel: {shopConfig.company.name}</p>
-            <p>Adres: {shopConfig.company.street}, {shopConfig.company.postalCode} {shopConfig.company.city}</p>
-            <p>Kraj: {shopConfig.company.country}</p>
-            <p>NIP: {shopConfig.company.nip}</p>
-            <p>E-mail: {shopConfig.company.email}</p>
-          </div>
-
-          {shopConfig.demo.enabled && (
-            <div className="border border-ui-border-base rounded-rounded p-4 bg-ui-bg-subtle">
-              <h2 className="text-xl-semi mb-3">{shopConfig.demo.label}</h2>
-              <p>{shopConfig.demo.notice}</p>
-            </div>
-          )}
         </div>
       </div>
     </div>

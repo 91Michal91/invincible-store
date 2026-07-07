@@ -1,5 +1,6 @@
 "use client"
 
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Heading, Text, clx } from "@modules/common/components/ui"
 
 import PaymentButton from "../payment-button"
@@ -41,9 +42,28 @@ const Podsumowanie = ({ cart }: { cart: HttpTypes.StoreCart }) => {
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
                 Klikając przycisk „Złóż zamówienie”, potwierdzasz, że
-                read, understand and accept our Terms of Use, Terms of Sale and
-                zasady zwrotów i potwierdzasz zapoznanie się z polityką sklepu
-                Store&apos;s Privacy Policy.
+                zapoznałeś się z{" "}
+                <LocalizedClientLink
+                  href="/terms"
+                  className="underline hover:text-ui-fg-subtle"
+                >
+                  regulaminem sklepu
+                </LocalizedClientLink>
+                ,{" "}
+                <LocalizedClientLink
+                  href="/returns-exchanges"
+                  className="underline hover:text-ui-fg-subtle"
+                >
+                  zasadami zwrotów
+                </LocalizedClientLink>{" "}
+                oraz{" "}
+                <LocalizedClientLink
+                  href="/privacy"
+                  className="underline hover:text-ui-fg-subtle"
+                >
+                  polityką prywatności
+                </LocalizedClientLink>
+                .
               </Text>
             </div>
           </div>

@@ -1,0 +1,113 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: invincible-store-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-medusa_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      POSTGRES_DB: ${POSTGRES_DB:-medusa-invincible-store}
+    volumes:
+      - invincible_store_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-medusa_user} -d ${POSTGRES_DB:-medusa-invincible-store}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - invincible_store_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: invincible-store-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - invincible_store_redis_data:/data
+    networks:
+      - invincible_store_net
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+      args:
+        DATABASE_URL: postgres://${POSTGRES_USER:-medusa_user}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-medusa-invincible-store}
+        STORE_CORS: ${STORE_CORS:-https://sklep.invinciblepolska.pl}
+        ADMIN_CORS: ${ADMIN_CORS:-https://api-sklep.invinciblepolska.pl}
+        AUTH_CORS: ${AUTH_CORS:-https://api-sklep.invinciblepolska.pl,https://sklep.invinciblepolska.pl}
+        REDIS_URL: redis://redis:6379
+    container_name: invincible-store-backend
+    restart: unless-stopped
+    env_file:
+      - apps/backend/.env.production
+    environment:
+      NODE_ENV: production
+      PORT: 9000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "127.0.0.1:9000:9000"
+    volumes:
+      - invincible_store_backend_static:/app/apps/backend/static
+    networks:
+      - invincible_store_net
+
+  storefront:
+    build:
+      context: .
+      dockerfile: apps/storefront/Dockerfile
+      args:
+        NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY}
+        NEXT_PUBLIC_MEDUSA_BACKEND_URL: ${NEXT_PUBLIC_MEDUSA_BACKEND_URL:-https://api-sklep.invinciblepolska.pl}
+        NEXT_PUBLIC_DEFAULT_REGION: ${NEXT_PUBLIC_DEFAULT_REGION:-pl}
+        NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL:-https://sklep.invinciblepolska.pl}
+        NEXT_PUBLIC_STRIPE_KEY: ${NEXT_PUBLIC_STRIPE_KEY:-}
+        NEXT_PUBLIC_SHOP_MODE: ${NEXT_PUBLIC_SHOP_MODE:-demo}
+        NEXT_PUBLIC_SHOP_NAME: ${NEXT_PUBLIC_SHOP_NAME:-Invincible Store}
+        NEXT_PUBLIC_SHOP_LOCALE: ${NEXT_PUBLIC_SHOP_LOCALE:-pl-PL}
+        NEXT_PUBLIC_SHOP_CURRENCY: ${NEXT_PUBLIC_SHOP_CURRENCY:-PLN}
+        NEXT_PUBLIC_SHOP_TAGLINE: ${NEXT_PUBLIC_SHOP_TAGLINE:-Sklep dla fanów Invincible}
+        NEXT_PUBLIC_SHOP_DESCRIPTION: ${NEXT_PUBLIC_SHOP_DESCRIPTION:-Odzież, gadżety i produkty dla fanów Invincible.}
+        NEXT_PUBLIC_COMPANY_NAME: ${NEXT_PUBLIC_COMPANY_NAME:-Invincible Polska}
+        NEXT_PUBLIC_COMPANY_STREET: ${NEXT_PUBLIC_COMPANY_STREET:-Adres zostanie uzupełniony}
+        NEXT_PUBLIC_COMPANY_POSTAL_CODE: ${NEXT_PUBLIC_COMPANY_POSTAL_CODE:-30-000}
+        NEXT_PUBLIC_COMPANY_CITY: ${NEXT_PUBLIC_COMPANY_CITY:-Kraków}
+        NEXT_PUBLIC_COMPANY_COUNTRY: ${NEXT_PUBLIC_COMPANY_COUNTRY:-Polska}
+        NEXT_PUBLIC_COMPANY_EMAIL: ${NEXT_PUBLIC_COMPANY_EMAIL:-kontakt@invinciblepolska.pl}
+        NEXT_PUBLIC_COMPANY_PHONE: ${NEXT_PUBLIC_COMPANY_PHONE:-+48 000 000 000}
+        NEXT_PUBLIC_COMPANY_NIP: ${NEXT_PUBLIC_COMPANY_NIP:-wkrótce}
+        NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-kontakt@invinciblepolska.pl}
+        NEXT_PUBLIC_CONTACT_PHONE: ${NEXT_PUBLIC_CONTACT_PHONE:-+48 000 000 000}
+        NEXT_PUBLIC_CONTACT_WORKING_HOURS: ${NEXT_PUBLIC_CONTACT_WORKING_HOURS:-Poniedziałek–piątek, 9:00–17:00}
+        NEXT_PUBLIC_SOCIAL_FACEBOOK: ${NEXT_PUBLIC_SOCIAL_FACEBOOK:-}
+        NEXT_PUBLIC_SOCIAL_INSTAGRAM: ${NEXT_PUBLIC_SOCIAL_INSTAGRAM:-}
+        NEXT_PUBLIC_SOCIAL_TIKTOK: ${NEXT_PUBLIC_SOCIAL_TIKTOK:-}
+        NEXT_PUBLIC_SOCIAL_LINKEDIN: ${NEXT_PUBLIC_SOCIAL_LINKEDIN:-}
+        NEXT_PUBLIC_PRIVACY_POLICY_UPDATED_AT: ${NEXT_PUBLIC_PRIVACY_POLICY_UPDATED_AT:-2026-07-01}
+        NEXT_PUBLIC_TERMS_UPDATED_AT: ${NEXT_PUBLIC_TERMS_UPDATED_AT:-2026-07-01}
+    container_name: invincible-store-storefront
+    restart: unless-stopped
+    env_file:
+      - apps/storefront/.env.production
+    environment:
+      NODE_ENV: production
+      PORT: 8000
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:3002:8000"
+    networks:
+      - invincible_store_net
+
+volumes:
+  invincible_store_postgres_data:
+  invincible_store_redis_data:
+  invincible_store_backend_static:
+
+networks:
+  invincible_store_net:
+    name: invincible_store_net

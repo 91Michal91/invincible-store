@@ -50,6 +50,8 @@ RUN apt-get update \
 
 COPY --from=builder /app /app
 
+WORKDIR /app/apps/backend/.medusa/server
+
 EXPOSE 9000
 
-CMD ["npm", "run", "start", "--workspace=@dtc/backend"]
+CMD ["npm", "run", "start"]

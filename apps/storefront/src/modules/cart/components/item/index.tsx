@@ -7,6 +7,7 @@ import CartItemSelect from "@modules/cart/components/cart-item-select"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import DeleteButton from "@modules/common/components/delete-button"
 import LineItemOptions from "@modules/common/components/line-item-options"
+import LineItemPrintPreview from "@modules/common/components/line-item-print-preview"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LineItemUnitPrice from "@modules/common/components/line-item-unit-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -46,20 +47,24 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
 
   return (
     <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className="!pl-0 p-4 w-24">
-        <LocalizedClientLink
-          href={`/products/${item.product_handle}`}
-          className={clx("flex", {
-            "w-16": type === "preview",
-            "small:w-24 w-12": type === "full",
-          })}
-        >
-          <Thumbnail
-            thumbnail={item.thumbnail}
-            images={item.variant?.product?.images}
-            size="square"
-          />
-        </LocalizedClientLink>
+      <Table.Cell className="!pl-0 p-4 w-40 small:w-52">
+        <div className="flex items-center gap-2">
+          <LocalizedClientLink
+            href={`/products/${item.product_handle}`}
+            className={clx("flex shrink-0", {
+              "w-16": type === "preview",
+              "small:w-24 w-12": type === "full",
+            })}
+          >
+            <Thumbnail
+              thumbnail={item.thumbnail}
+              images={item.variant?.product?.images}
+              size="square"
+            />
+          </LocalizedClientLink>
+
+          <LineItemPrintPreview variant={item.variant} type={type} />
+        </div>
       </Table.Cell>
 
       <Table.Cell className="text-left">

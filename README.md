@@ -1,258 +1,172 @@
-# Invincible Shop Template
+# Invincible Store
 
-Komercyjny template sklepu internetowego oparty o Medusa, Next.js, PostgreSQL i Docker.
+Invincible Store is a full-stack e-commerce project built for the Polish Invincible fan community.
 
-Projekt ma służyć jako szablon wielokrotnego użytku do kolejnych sklepów internetowych. Kod techniczny zostaje po angielsku, a widoczny UI klienta jest po polsku.
+The shop is part of the wider [invinciblepolska.pl](https://invinciblepolska.pl) project. I started it as a real online store rather than a tutorial application, and I am gradually turning the codebase into a reusable foundation for future e-commerce projects.
 
----
+The current version uses Medusa for the commerce backend and administration panel, Next.js for the storefront, PostgreSQL for data storage and Docker for deployment.
 
-## Cel projektu
+## Why I built it
 
-Celem jest przygotowanie powtarzalnego template sklepu:
+I wanted to work on a project that goes beyond a simple product catalogue.
 
-- Medusa backend/admin,
-- Next.js storefront,
-- PostgreSQL w Dockerze,
-- konfiguracja sklepu przez shopConfig i env,
-- tryb demo / production,
-- polski UI klienta,
-- backup i restore,
-- manualna checklista QA,
-- przygotowanie pod staging i production.
+Building the store has involved customer accounts, addresses, products, variants, carts, checkout, orders, shipping configuration, deployment and ongoing work on the production server.
 
-Pierwszym realnym testem produkcyjnym po dopracowaniu template ma być invinciblepolska.pl.
+It has also given me experience with maintaining a project over time: fixing problems, introducing changes in small steps, creating backups and testing each deployment before making it public.
 
----
+The long-term goal is to separate the reusable shop logic from the Invincible-specific content so the project can become a practical starting point for other online stores.
 
-## Start lokalny
+## Current features
 
-Uruchom bazę:
+The project currently includes:
 
-    docker start invincible-shop-postgres
+- a responsive Next.js storefront,
+- products, categories and collections,
+- product variants and inventory,
+- customer registration and login,
+- customer profiles and saved addresses,
+- cart and checkout flows,
+- order history and order details,
+- Polish customer-facing interface,
+- Medusa administration panel,
+- PostgreSQL database,
+- Docker-based local and production environments,
+- project and database backup scripts,
+- environment-based shop configuration,
+- demo and production modes.
 
-Uruchom projekt:
+The storefront also contains custom product presentation work, including product image handling and previews for printed clothing variants.
 
-    cd ~/invincible-next/invincible-shop
-    npm run dev
+## Project direction
 
-Adresy lokalne:
+Invincible Store currently serves two purposes.
 
-- Storefront: http://localhost:8000/pl
-- Store: http://localhost:8000/pl/store
-- Cart: http://localhost:8000/pl/cart
-- Checkout: http://localhost:8000/pl/checkout
-- Account: http://localhost:8000/pl/account
-- Admin: http://localhost:9000/app
+First, it is the shop connected with the Invincible Polska fan website.
 
----
+Second, it is becoming a reusable e-commerce template that can later be adapted for other brands and clients without rebuilding the entire technical foundation from scratch.
 
-## Baza danych
+The reusable parts are intended to include:
 
-Docker container:
-
-    invincible-shop-postgres
-
-Poprawna baza danych:
-
-    medusa-invincible-shop
-
----
-
-## Konfiguracja
-
-Główna konfiguracja sklepu:
-
-    apps/storefront/src/lib/config/shop.ts
-
-Storefront env lokalny:
-
-    apps/storefront/.env.local
-
-Przykład env do repo:
-
-    apps/storefront/.env.example
-
-Nie wrzucać do repo prawdziwych sekretów, tokenów ani plików .env.local.
-
----
-
-## Tryb demo / production
-
-Storefront obsługuje:
-
-    NEXT_PUBLIC_SHOP_MODE="demo"
-    NEXT_PUBLIC_SHOP_MODE="production"
-
-Po zmianie env należy zrestartować dev server.
-
-Gdy Next pokazuje stare wartości po zmianach:
-
-    rm -rf apps/storefront/.next apps/storefront/.turbo .turbo
-    npm run dev
-
----
-
-## Zasada językowa
-
-Kod techniczny zostaje po angielsku:
-
-- funkcje,
-- komponenty,
-- importy,
-- eksporty,
-- typy,
-- pola Medusy,
-- techniczne statusy,
-- nazwy API.
-
-Po polsku mogą być:
-
-- teksty widoczne dla klienta,
-- label,
-- placeholder,
-- title,
-- aria-label,
-- komunikaty błędów,
-- dokumentacja dla użytkownika.
-
-Nie robić global replace typu Cart -> Koszyk, Payment -> Płatność, Shipping -> Dostawa.
-
----
-
-## Backup
-
-Backup projektu:
-
-    npm run backup:project -- nazwa-etapu
-
-Backup bazy:
-
-    npm run backup:db -- nazwa-etapu
-
-Backup wszystkiego:
-
-    npm run backup:all -- nazwa-etapu
-
-Przykład:
-
-    npm run backup:all -- after-readme-template-docs
-
-Backupy trafiają do:
-
-    ~/invincible-next/backups
-
----
-
-## Restore bazy
-
-Restore jest operacją destrukcyjną. Nie wykonywać bez aktualnego backupu.
-
-Komenda:
-
-    npm run restore:db -- path/to/backup.sql
-
-Skrypt może wymagać wpisania:
-
-    RESTORE
-
----
-
-## Manual QA
-
-Docelowa checklista powinna powstać w:
-
-    docs/QA.md
-
-Minimalne obszary testów:
-
-- home,
-- store,
-- product,
-- cart,
+- store configuration,
+- product and category structure,
+- customer accounts,
 - checkout,
-- account,
-- addresses,
-- orders,
-- order details,
-- sesja wygasła,
-- mobile,
-- desktop.
+- order handling,
+- deployment setup,
+- backups,
+- documentation,
+- repeatable testing procedures.
 
----
+Brand-specific content, styling and product data can then be replaced for each new store.
 
-## Seed/reset danych
+## Technology stack
 
-Docelowo projekt powinien mieć seed/reset danych demo.
+| Area | Technology |
+|---|---|
+| Storefront | Next.js, React, TypeScript |
+| Commerce backend | Medusa |
+| Administration | Medusa Admin |
+| Database | PostgreSQL |
+| Styling | Tailwind CSS |
+| Monorepo | npm workspaces, Turborepo |
+| Deployment | Docker, Docker Compose |
+| Infrastructure | Linux VPS, reverse proxy, Cloudflare |
 
-Do przygotowania:
+## Repository structure
 
-    docs/SEED.md
+    apps/backend       Medusa backend and administration
+    apps/storefront    Next.js customer-facing storefront
+    docs               Deployment, security, QA and architecture notes
+    scripts            Backup and database restore scripts
 
-Seed powinien obejmować:
+## Local setup
 
-- region Polska,
-- PLN,
-- metody dostawy,
-- metoda płatności demo,
-- kategorie,
-- produkty demo,
-- warianty,
-- ceny,
-- stock.
+### Requirements
 
-Nie resetować bazy bez backupu.
+- Node.js 20 or newer
+- npm
+- Docker
+- Docker Compose
 
----
+Clone the repository:
 
-## Deployment
+    git clone https://github.com/91Michal91/invincible-store.git
+    cd invincible-store
 
-Docelowa checklista deploymentu:
+Create the local environment configuration:
 
-    docs/DEPLOYMENT.md
+    cp .env.example .env
 
-Zakładany kierunek:
+Review the example environment files inside the application directories and provide your own local values.
 
-- Hetzner VPS,
-- Cloudflare,
-- Docker Compose,
-- reverse proxy,
-- HTTPS,
-- staging,
-- production,
-- backupy produkcyjne,
-- monitoring,
-- rollback.
+Install dependencies:
 
-Nie wystawiać npm run dev jako produkcji.
+    npm install
 
----
+Start the development environment:
 
-## Najbliższe zadania
+    npm run dev
 
-1. Dokończyć README.
-2. Zrobić backup po README.
-3. Dodać docs/QA.md.
-4. Dodać helpery formatowania.
-5. Przygotować docs/SEED.md.
-6. Przygotować docs/DEPLOYMENT.md.
+By default, the applications use:
 
----
+- storefront: `http://localhost:8000`
+- Medusa backend and admin: `http://localhost:9000`
 
-## AI continuation notes
+Exact URLs depend on the local environment configuration.
 
-Projekt traktować jako komercyjny template wielokrotnego użytku.
+## Available commands
 
-Proces pracy:
+Start the development environment:
 
-1. diagnoza,
-2. grep/find,
-3. backup,
-4. mała zmiana,
-5. grep sprawdzający,
-6. test w przeglądarce,
-7. backup projektu i bazy.
+    npm run dev
 
-Nie tłumaczyć technicznych identyfikatorów Medusy.
+Build all applications:
 
-Nie prosić o sekrety i nie wklejać wartości .env.local.
+    npm run build
 
+Create a project backup:
+
+    npm run backup:project -- backup-name
+
+Create a database backup:
+
+    npm run backup:db -- backup-name
+
+Create both backups:
+
+    npm run backup:all -- backup-name
+
+Database restoration is destructive and should only be used after creating a current backup.
+
+## Configuration and security
+
+Real passwords, API keys and production environment files are not included in the repository.
+
+The repository contains example configuration files showing which variables are required. Anyone using the project must provide their own credentials and infrastructure settings.
+
+Runtime data, database contents and production backups should never be committed to Git.
+
+More detailed notes are available in:
+
+- `docs/SECURITY.md`
+- `docs/DEPLOYMENT.md`
+- `docs/QA.md`
+- `docs/ARCHITECTURE.md`
+
+## Work in progress
+
+This is an active project, not a finished commercial template.
+
+Some parts are already running in production, while others are still being improved or prepared for future integrations. Planned work includes payment integration, courier integration, further storefront customization and continued separation of reusable code from project-specific content.
+
+## Disclaimer
+
+This is an independent fan-made project created for community, educational and portfolio purposes.
+
+It is not affiliated with or endorsed by the owners of the Invincible franchise.
+
+## Author
+
+**Michał Majda**
+
+GitHub: [91Michal91](https://github.com/91Michal91)
